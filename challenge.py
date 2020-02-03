@@ -25,22 +25,28 @@ def to_json(challenge_file):
                 # Remove colon characters from keys, then use this value as the key name
                 events_json[event_data_split[k].strip(':')] = val
 
-    print('Challenge json data: 'events_json)
+    print('Challenge json data: ' + str(events_json))
     return events_json
 
 # base64 decode the value of key 'hint'
 def decode_hint(json_data):
 
     decoded_data = base64.b64decode(json_data['hint'])
-    print('B64 decoded hint: ', decoded_data)
+    print('B64 decoded hint: ' + str(decoded_data))
 
     return decoded_data
 
-
+# Find the the bitwise XOR comparison with 0x175
 def xor_value(val):
 
+    # Make sure our value is interpreted as hexadecimal
     bitwise_comparison = int(val, 16) ^ 0x17F
-    print(hex(bitwise_comparison))
+    print('int value of our xor comparison ' + str(val) + ' with 0x17F: ' + str(bitwise_comparison))
+    print('hex value of our xor comparison ' + str(val) + ' with 0x17F: ' + str(hex(bitwise_comparison)))
+
+    return bitwise_comparison
+
+
 
 json_data = to_json(challenge_file)
 decode_hint(json_data)
