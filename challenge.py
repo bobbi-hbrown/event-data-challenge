@@ -34,3 +34,6 @@ def xor_value(val):
 json_data = to_json(challenge_file)
 decode_hint(json_data)
 xor_value(json_data['one'])
+xor_value(json_data['two'])
+xor_value(json_data['three'])
+xor_value(json_data['four'])
