@@ -25,13 +25,17 @@ def to_json(challenge_file):
                 # Remove colon characters from keys, then use this value as the key name
                 events_json[event_data_split[k].strip(':')] = val
 
-    print(events_json)
+    print('Challenge json data: 'events_json)
     return events_json
 
+# base64 decode the value of key 'hint'
 def decode_hint(json_data):
 
     decoded_data = base64.b64decode(json_data['hint'])
-    print(decoded_data)
+    print('B64 decoded hint: ', decoded_data)
+
+    return decoded_data
+
 
 def xor_value(val):
 
