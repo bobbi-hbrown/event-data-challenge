@@ -66,11 +66,15 @@ def next_prime(val):
 
 # Returns the fifth value in our sequence
 def next_sequence_value(val):
-    
-    num = xor_value(val)
-    next_num = next_prime(num)
-    next_val = next_num ^ 0x17F
-    print(next_val)
+
+    try:
+        num = xor_value(val)
+        next_num = next_prime(num)
+        next_val = next_num ^ 0x17F
+        print(next_val)
+    except Exception as e:
+        print("Error found when producing the next value: {}".format(e))
+
 
     return next_val
                 
