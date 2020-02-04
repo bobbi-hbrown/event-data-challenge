@@ -1,5 +1,6 @@
 import os, base64, json, re
 
+# Load in our event data
 challenge_file = os.path.abspath(os.getcwd()) + '/event_data.txt'
 
 # Converts our event_data into JSON format in order to parse
@@ -46,11 +47,38 @@ def xor_value(val):
 
     return bitwise_comparison
 
+# Find the next prime number after a given value
+def next_prime(val):
 
+    # All values have a prime number in between n and 2n
+    lower = val + 1
+    upper = 2 * val
 
+    for num in range(lower, upper):
+
+    # All prime numbers are greater than 1
+        for i in range(2, num):
+            # 
+            if (num % i) == 0:
+                break
+            else:
+                return num
+
+# Returns the fifth value in our sequence
+def next_sequence_value(val):
+    
+    num = xor_value(val)
+    next_num = next_prime(num)
+    next_val = next_num ^ 0x17F
+    print(next_val)
+
+    return next_val
+                
 json_data = to_json(challenge_file)
 decode_hint(json_data)
 xor_value(json_data['one'])
 xor_value(json_data['two'])
 xor_value(json_data['three'])
 xor_value(json_data['four'])
+
+print('fifth value in our sequence: ' + hex(next_sequence_value(json_data['four'])) )
